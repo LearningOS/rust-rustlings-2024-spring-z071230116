@@ -72,11 +72,25 @@ impl<T> LinkedList<T> {
 	pub fn merge(list_a:LinkedList<T>,list_b:LinkedList<T>) -> Self
 	{
 		//TODO
-		Self {
+		let a = Self {
             length: 0,
             start: None,
             end: None,
+        };
+        let index_a = 0i32;
+        let index_b = 0i32;
+
+        while(index_a < index_a.length && index_b < index_b.length){
+            if(list_a.get(index_a) <= list_b.get(index_b)){
+                a.add(*list_a.get(index_a).unwrap());
+                index_a += 1;
+            }else{
+                a.add(*list_b.get(index_b).unwrap());
+                index_b += 1;
+            }
         }
+        
+        a
 	}
 }
 
