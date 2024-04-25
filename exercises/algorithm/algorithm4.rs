@@ -6,6 +6,7 @@
 //I AM NOT DONE
 use std::cmp::Ordering;
 use std::fmt::Debug;
+use core::mem;
 
 
 #[derive(Debug)]
@@ -50,7 +51,37 @@ where
 
     // Insert a value into the BST
     fn insert(&mut self, value: T) {
+        let _node = Box::new(TreeNode::new(value));
+        let mut _index = &self.root;
+        let mut _parent= &self.root;
+        let mut _direc = 0;
+        match &self.root{
+            Some(_temp) =>{
+                loop {
+                    match _index{
+                        Some(x)=>{
+                            if x.value <= value{
+                                _parent =_index;
+                                _direc = 1;
+                                _index = &(*x).right;
+                            }else{
+                                _parent =_index;
+                                _direc = 0;
+                                _index = &(*x).left;
+                            }
+                        },
+                        None =>{
+                            break;
+                        }
+                    }            
+                }
+            },
+            None =>{
+                self.root = Some(_node);
+            }
+        }        
         //TODO
+
     }
 
     // Search for a value in the BST

@@ -2,14 +2,13 @@
 	single linked list merge
 	This problem requires you to merge two ordered singly linked lists into one ordered singly linked list
 */
-// I AM NOT DONE
 
 use std::fmt::{self, Display, Formatter};
 use std::ptr::NonNull;
 use std::vec::*;
 
-#[derive(Debug)]
-struct Node<T> {
+#[derive(Debug, PartialEq)]
+struct Node<T > {
     val: T,
     next: Option<NonNull<Node<T>>>,
 }
@@ -29,13 +28,13 @@ struct LinkedList<T> {
     end: Option<NonNull<Node<T>>>,
 }
 
-impl<T> Default for LinkedList<T> {
+impl<T: std::cmp::PartialOrd+ std::clone::Clone> Default for LinkedList<T> {
     fn default() -> Self {
         Self::new()
     }
 }
 
-impl<T> LinkedList<T> {
+impl<T: std::cmp::PartialOrd+ std::clone::Clone> LinkedList<T> {
     pub fn new() -> Self {
         Self {
             length: 0,
@@ -69,27 +68,37 @@ impl<T> LinkedList<T> {
             },
         }
     }
-	pub fn merge(list_a:LinkedList<T>,list_b:LinkedList<T>) -> Self
+	pub fn merge(mut list_a:LinkedList<T>,mut list_b:LinkedList<T>) -> Self
 	{
 		//TODO
-		let a = Self {
+		let mut a = Self {
             length: 0,
             start: None,
             end: None,
         };
-        let index_a = 0i32;
-        let index_b = 0i32;
+        let mut index_a = 0i32;
+        let mut index_b = 0i32;
 
-        while(index_a < index_a.length && index_b < index_b.length){
-            if(list_a.get(index_a) <= list_b.get(index_b)){
-                a.add(*list_a.get(index_a).unwrap());
+        while(index_a < (list_a.length as i32) && index_b < (list_b.length as i32)){
+            if(list_a.get(index_a).unwrap() <= list_b.get(index_b).unwrap()){
+                a.add(list_a.get(index_a).unwrap().clone());
                 index_a += 1;
             }else{
-                a.add(*list_b.get(index_b).unwrap());
+                a.add(list_b.get(index_b).unwrap().clone());
                 index_b += 1;
             }
         }
-        
+        if(index_a == (list_a.length as i32) ){
+            while(index_b < (list_b.length as i32)){
+                a.add(list_b.get(index_b).unwrap().clone());
+                index_b += 1;
+            }
+        }else{
+            while(index_a < (list_a.length as i32)){
+                a.add(list_a.get(index_a).unwrap().clone());
+                index_a += 1;
+            }
+        }
         a
 	}
 }

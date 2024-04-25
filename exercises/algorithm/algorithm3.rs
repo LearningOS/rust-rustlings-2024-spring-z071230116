@@ -3,9 +3,16 @@
 	This problem requires you to implement a sorting algorithm
 	you can use bubble sorting, insertion sorting, heap sorting, etc.
 */
-// I AM NOT DONE
 
-fn sort<T>(array: &mut [T]){
+fn sort<T>(array: &mut [T])
+where T:std::cmp::PartialOrd+ std::cmp::Ord{
+    let mut a = 1;
+    if array.len() < 2{
+        a = 0;
+    }
+    array.sort();
+    
+    
 	//TODO
 }
 #[cfg(test)]
