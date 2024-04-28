@@ -3,7 +3,6 @@
 	This question requires you to use a stack to achieve a bracket match
 */
 
-// I AM NOT DONE
 #[derive(Debug)]
 struct Stack<T> {
 	size: usize,
@@ -32,6 +31,7 @@ impl<T> Stack<T> {
 	}
 	fn pop(&mut self) -> Option<T> {
 		// TODO
+		self.size -= 1;
 		self.data.pop()		
 	}
 	fn peek(&self) -> Option<&T> {
@@ -102,9 +102,10 @@ impl<'a, T> Iterator for IterMut<'a, T> {
 fn bracket_match(bracket: &str) -> bool
 {
 	//TODO	
-	let let_bracket = Vec::new('(','{','[');
-	let right_bracket = Vec::new(')','}',']');
-	let mut str_iter = bracket.itro();
+	let let_bracket = vec![40,91,123];
+	let right_bracket = vec![41,93,125];
+	let binding = bracket.to_string();
+	let mut str_iter = binding.as_bytes().into_iter();
 	let mut bra_stack = Stack::new();
 	loop {
 		match str_iter.next(){
@@ -112,12 +113,19 @@ fn bracket_match(bracket: &str) -> bool
 				if let_bracket.contains(p){
                     bra_stack.push(p);
                 }else if right_bracket.contains(p){
-                    if bra_stack.is_empty() || bra_stack.peek.unwrap().is_not_map(p){
+                    if bra_stack.is_empty(){
                         return false;
                     }
-					if !bra_stack.peek.unwrap().is_not_map(p){
-						bra_stack.pop()
+					if **bra_stack.peek().unwrap() == 40 && *p == 41{
+						bra_stack.pop();
+					}else if **bra_stack.peek().unwrap() == 91 && *p == 93{
+						bra_stack.pop();
+					}else if **bra_stack.peek().unwrap() == 123 && *p == 125{
+						bra_stack.pop();
+					}else{
+						return false;
 					}
+
                 }
 			},
 			None =>{
