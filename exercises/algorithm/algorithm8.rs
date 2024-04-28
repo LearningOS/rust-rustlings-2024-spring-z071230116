@@ -128,7 +128,7 @@ mod tests {
         assert_eq!(s.pop(), Ok(3));
         assert_eq!(s.pop(), Ok(2));
         s.push(4);
-        s.push(5);
+        s.push(5); 
         assert_eq!(s.is_empty(), false);
         assert_eq!(s.pop(), Ok(5));
         assert_eq!(s.pop(), Ok(4));
