@@ -109,6 +109,7 @@ where
         if self.is_empty(){
             None
         }else{
+            self.count -= 1;
             Some(self.items.remove(1))
         }		
     }
