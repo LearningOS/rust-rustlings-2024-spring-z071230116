@@ -69,7 +69,7 @@ impl<T> myStack<T> {
     }
     pub fn push(&mut self, elem: T) {
         self.q1.enqueue(elem);
-        //TODO
+        //TODO= 
         self.q1.enqueue(elem);
         self.size += 1;
     }
