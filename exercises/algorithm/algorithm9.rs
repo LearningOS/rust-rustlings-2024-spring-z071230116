@@ -2,7 +2,6 @@
 	heap
 	This question requires you to implement a binary heap function
 */
-// I AM NOT DONE
 
 use std::cmp::Ord;
 use std::default::Default;
@@ -46,6 +45,9 @@ where
         }
         loop{
             let mut ch = self.parent_idx(_index);
+            if ch == 0{
+                break;
+            }
             if (self.comparator)(self.items.get(_index).unwrap(),self.items.get(ch).unwrap()){
                self.items.swap(_index,ch);
                _index = ch;

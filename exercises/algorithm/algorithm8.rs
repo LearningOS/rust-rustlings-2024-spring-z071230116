@@ -48,7 +48,7 @@ impl<T> Default for Queue<T> {
         Queue {
             elements: Vec::new(),
         }
-    }
+    } 
 }
 
 pub struct myStack<T>
@@ -68,8 +68,7 @@ impl<T> myStack<T> {
         }
     }
     pub fn push(&mut self, elem: T) {
-        self.q1.enqueue(elem);
-        //TODO= 
+        
         self.q1.enqueue(elem);
         self.size += 1;
     }
