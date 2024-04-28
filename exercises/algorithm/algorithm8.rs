@@ -56,26 +56,36 @@ pub struct myStack<T>
 {
 	//TODO
 	q1:Queue<T>,
-	q2:Queue<T>
+	q2:Queue<T>,
+    size :usize
 }
 impl<T> myStack<T> {
     pub fn new() -> Self {
         Self {
 			//TODO
 			q1:Queue::<T>::new(),
-			q2:Queue::<T>::new()
+			q2:Queue::<T>::new(),
+            size:0
         }
     }
     pub fn push(&mut self, elem: T) {
         //TODO
+        self.q1.enqueue(elem);
+        self.size += 1;
     }
     pub fn pop(&mut self) -> Result<T, &str> {
         //TODO
+        let mut _index = 0;
+        while _index < self.size{
+            let _q = self.q1.dequeue();
+            self.q2.enqueue(_q?);
+        }
+
 		Err("Stack is empty")
     }
     pub fn is_empty(&self) -> bool {
 		//TODO
-        true
+        self.size == 0
     }
 }
 
