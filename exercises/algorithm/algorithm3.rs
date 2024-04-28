@@ -5,12 +5,28 @@
 */
 
 fn sort<T>(array: &mut [T])
-where T:std::cmp::PartialOrd+ std::cmp::Ord{
-    let mut a = 1;
-    if array.len() < 2{
-        a = 0;
+where T:std::cmp::PartialOrd+ std::cmp::Ord{    
+    loop {
+        let mut _cnt = 0;
+        let mut _index = 0;
+        let mut _index_next = 1;
+        loop{
+            if _index_next >= array.len(){
+                break;
+            }
+            if array[_index] > array[_index_next]{
+                array.swap(_index,_index_next);
+                _index = _index_next;
+                _cnt += 1;
+            }else{
+                _index += 1;
+            }
+            _index_next += 1;
+        }
+        if _cnt == 0{
+            break;
+        }
     }
-    array.sort();
     
     
 	//TODO
