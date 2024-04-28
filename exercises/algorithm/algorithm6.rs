@@ -1,9 +1,9 @@
+
 /*
 	dfs
 	This problem requires you to implement a basic DFS traversal
 */
 
-// I AM NOT DONE
 use std::collections::HashSet;
 
 struct Graph {
@@ -24,6 +24,30 @@ impl Graph {
 
     fn dfs_util(&self, v: usize, visited: &mut HashSet<usize>, visit_order: &mut Vec<usize>) {
         //TODO
+        let mut _v = v;
+        visited.insert(v);
+        visit_order.push(v);
+        let mut _index = 0;
+        loop {
+            let mut _v_intr = self.adj[*visit_order.get(_index).unwrap()].iter();
+            loop {
+                match _v_intr.next(){
+                    Some(p) =>{
+                        if visited.get(p) ==None{
+                            visited.insert(*p);
+                            visit_order.push(*p);                            
+                        }
+                    },
+                    None =>{
+                        _index += 1;
+                        break;
+                    }
+                }
+            }
+            if visit_order.get(_index) == None{
+                break;
+            }
+        }
     }
 
     // Perform a depth-first search on the graph, return the order of visited nodes
@@ -75,4 +99,3 @@ mod tests {
         assert_eq!(visit_order_disconnected, vec![3, 4]); 
     }
 }
-
