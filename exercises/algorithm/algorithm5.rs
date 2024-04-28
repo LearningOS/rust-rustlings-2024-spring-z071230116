@@ -3,11 +3,12 @@
 	This problem requires you to implement a basic BFS algorithm
 */
 
+//I AM NOT DONE
 use std::collections::VecDeque;
 
 // Define a graph
 struct Graph {
-    adj: Vec<Vec<usize>>
+    adj: Vec<Vec<usize>>, 
 }
 
 impl Graph {
@@ -28,42 +29,8 @@ impl Graph {
     fn bfs_with_return(&self, start: usize) -> Vec<usize> {
         
 		//TODO
-        let mut _visited_status = vec![0;self.adj.len()];
-        let mut visit_order = vec![]; 
-        let mut _start = start;
-        let mut _index = 0usize;
-        visit_order.push(_start);
-        _visited_status[_start] = 1;
-        
-        loop {
-            println!("the len is {}",self.adj.len());
-            let mut adj_vec_iter = self.adj[_start].iter();
-            loop {
-                match adj_vec_iter.next(){
-                    Some(p) =>{
-                        if _visited_status[*p] != 1{
-                            visit_order.push(*p);
-                            _visited_status[*p] = 1;
-                        }
-                    },
-                    None =>{
-                        break;
-                    }
-                }                
-            }
-            if _index < self.adj.len(){
-                _index +=1;
-                match visit_order.get(_index){
-                    Some(p) =>{
-                        println!("the len is {}",_start);
-                        _start = *p;
-                    },
-                    None =>{
-                        return visit_order;
-                    }
-                }
-            }            
-        }
+
+        let mut visit_order = vec![];
         visit_order
     }
 }

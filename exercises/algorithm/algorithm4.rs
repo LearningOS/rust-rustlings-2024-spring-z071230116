@@ -2,8 +2,11 @@
 	binary_search tree
 	This problem requires you to implement a basic interface for a binary tree
 */
+
+//I AM NOT DONE
 use std::cmp::Ordering;
 use std::fmt::Debug;
+use core::mem;
 
 
 #[derive(Debug)]
@@ -48,43 +51,30 @@ where
 
     // Insert a value into the BST
     fn insert(&mut self, value: T) {
-        let _node = Box::new(TreeNode::new(value)); 
+        let _node = Box::new(TreeNode::new(value));
+        let mut _index = &self.root;
+        let mut _parent= &self.root;
+        let mut _direc = 0;
         match &self.root{
             Some(_temp) =>{
-                let mut _index = &mut self.root;                
                 loop {
                     match _index{
                         Some(x)=>{
-                                if x.value  == _node.value{
-                                    return;
-                                }
-                            if x.value < _node.value{                                
-                                match &x.right{
-                                    Some(p) =>{},
-                                    Node =>{
-                                        x.right = Some(_node);
-                                        return;
-                                    }
-                                }
-                                _index = &mut x.right;
-
+                            if x.value <= value{
+                                _parent =_index;
+                                _direc = 1;
+                                _index = &(*x).right;
                             }else{
-                                match &x.left{
-                                    Some(p) =>{},
-                                    Node =>{
-                                        x.left = Some(_node);
-                                        return;
-                                    }
-                                }
-                                _index = &mut x.left;                               
+                                _parent =_index;
+                                _direc = 0;
+                                _index = &(*x).left;
                             }
                         },
                         None =>{
                             break;
                         }
-                    }
+                    }            
                 }
-                
             },
             None =>{
                 self.root = Some(_node);
@@ -96,24 +86,8 @@ where
 
     // Search for a value in the BST
     fn search(&self, value: T) -> bool {
-        let mut _index = & self.root;
-        loop{
-            match _index{
-                None =>{
-                    return false;
-                },
-                Some(_p)=>{
-                    if _p.value == value{
-                        return true;
-                    }else if _p.value < value{
-                        _index = &_p.right;
-                    }else{
-                        _index = &_p.left;
-                    }
-                }
-            }
-        }
-
+        //TODO
+        true
     }
 }
 
